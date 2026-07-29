@@ -1,0 +1,22 @@
+# Secretos
+.env
+
+# Entorno virtual
+.venv/
+venv/
+
+# Base vectorial generada (se regenera con ingest.py)
+vectorstore/
+
+# Python
+__pycache__/
+*.py[cod]
+
+# uv
+.python-version
+
+# Editores / SO
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
