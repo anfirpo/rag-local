@@ -103,5 +103,3 @@ Pregunta trampa (no está en los documentos):
 | `GEMINI_API_KEY` | API key de Google AI Studio (embeddings + generación). | Sí |
 | `GEMINI_MODEL` | Modelo de generación (default `gemini-2.5-flash`). | No |
 
-> Para usar tus propios documentos, poné tus archivos `.txt`/`.md` en `data/` y
-> volvé a correr `python ingest.py` (borrá antes `vectorstore/` para reindexar).
