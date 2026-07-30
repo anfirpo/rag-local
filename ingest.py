@@ -45,17 +45,23 @@ def get_embeddings() -> GoogleGenerativeAIEmbeddings:
 def _load_and_split() -> list[Document]:
     """Lee los archivos de ./data y los parte en chunks con su fuente."""
     splitter = RecursiveCharacterTextSplitter(
-        chunk_size=500,          # tokens (por length_function)
-        chunk_overlap=50,        # tokens de solapamiento
+        chunk_size=500,  # tokens (por length_function)
+        chunk_overlap=50,  # tokens de solapamiento
         length_function=_token_len,
         separators=["\n\n", "\n", " ", ""],
     )
-    paths = sorted(glob.glob(f"{DATA_DIR}/*.md")) + sorted(glob.glob(f"{DATA_DIR}/*.txt"))
+    paths = sorted(glob.glob(f"{DATA_DIR}/*.md")) + sorted(
+        glob.glob(f"{DATA_DIR}/*.txt")
+    )
     docs: list[Document] = []
     for path in paths:
         texto = Path(path).read_text(encoding="utf-8")
         for chunk in splitter.split_text(texto):
-            docs.append(Document(page_content=chunk, metadata={"source": os.path.basename(path)}))
+            docs.append(
+                Document(
+                    page_content=chunk, metadata={"source": os.path.basename(path)}
+                )
+            )
     return docs
 
 
@@ -79,7 +85,9 @@ def get_vectorstore(force_reindex: bool = False) -> Chroma:
 
     print("[ingest] Indexando documentos desde ./data ...")
     docs = _load_and_split()
-    print(f"[ingest] {len(docs)} chunk(s) generados. Calculando embeddings y persistiendo...")
+    print(
+        f"[ingest] {len(docs)} chunk(s) generados. Calculando embeddings y persistiendo..."
+    )
     vs = Chroma.from_documents(
         documents=docs,
         embedding=embeddings,

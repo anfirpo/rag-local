@@ -80,7 +80,10 @@ async def get_rag_response(query: str, k: int = TOP_K) -> RAGResponse:
 
 async def main() -> None:
     pruebas = [
-        ("PREGUNTA EN CONTEXTO", "¿Qué es el chunking y por qué conviene medirlo en tokens?"),
+        (
+            "PREGUNTA EN CONTEXTO",
+            "¿Qué es el chunking y por qué conviene medirlo en tokens?",
+        ),
         ("PREGUNTA TRAMPA", "¿Cuál es la capital de Francia?"),
     ]
     for etiqueta, pregunta in pruebas:
